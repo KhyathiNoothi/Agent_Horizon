@@ -1,6 +1,18 @@
 import { ResourceDecorator as Resource } from '@nitrostack/core';
-import * as fs from 'fs';
-import * as path from 'path';
+import { loadJsonData } from '../../shared/utils/json.loader.js';
+
+const defaultTalentData = {
+  platforms: {},
+  salary_benchmarks_india: {
+    software_engineer: { min: 2500000, mid_2_5yrs: { min: 70000, max: 120000 }, max: 180000 },
+    ui_ux_designer: { min: 1500000, mid_2_5yrs: { min: 45000, max: 85000 }, max: 120000 },
+    marketing_lead: { min: 1800000, mid_2_5yrs: { min: 50000, max: 90000 }, max: 130000 },
+    devops_engineer: { min: 2200000, mid_2_5yrs: { min: 60000, max: 110000 }, max: 150000 },
+    data_scientist: { min: 2500000, mid_2_5yrs: { min: 70000, max: 130000 }, max: 170000 },
+    intern: { stipend_monthly: 15000 }
+  },
+  role_templates: []
+};
 
 export class TalentResources {
   @Resource({
@@ -11,14 +23,13 @@ export class TalentResources {
     mimeType: "application/json",
   })
   async getTalentPlatforms() {
-    const dataPath = path.join(process.cwd(), 'data', 'talent-platforms.json');
-    const data = fs.readFileSync(dataPath, 'utf-8');
+    const data = loadJsonData('talent-platforms.json', defaultTalentData);
     return {
       contents: [
         {
           uri: "talent://platforms",
           mimeType: "application/json",
-          text: data,
+          text: JSON.stringify(data, null, 2),
         },
       ],
     };
@@ -31,9 +42,7 @@ export class TalentResources {
     mimeType: "application/json",
   })
   async getSalaryBenchmarks() {
-    const dataPath = path.join(process.cwd(), 'data', 'talent-platforms.json');
-    const rawData = fs.readFileSync(dataPath, 'utf-8');
-    const data = JSON.parse(rawData);
+    const data = loadJsonData('talent-platforms.json', defaultTalentData);
     return {
       contents: [
         {
@@ -52,9 +61,7 @@ export class TalentResources {
     mimeType: "application/json",
   })
   async getRoleTemplates() {
-    const dataPath = path.join(process.cwd(), 'data', 'talent-platforms.json');
-    const rawData = fs.readFileSync(dataPath, 'utf-8');
-    const data = JSON.parse(rawData);
+    const data = loadJsonData('talent-platforms.json', defaultTalentData);
     return {
       contents: [
         {

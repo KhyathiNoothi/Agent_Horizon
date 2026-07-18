@@ -1,6 +1,12 @@
 import { ResourceDecorator as Resource } from '@nitrostack/core';
-import * as fs from 'fs';
-import * as path from 'path';
+import { loadJsonData } from '../../shared/utils/json.loader.js';
+
+const defaultInvestorData = {
+  accelerators: [],
+  angel_networks: [],
+  vc_firms: [],
+  government_grants: []
+};
 
 export class InvestorResources {
   @Resource({
@@ -11,14 +17,13 @@ export class InvestorResources {
     mimeType: "application/json",
   })
   async getInvestorDatabase() {
-    const dataPath = path.join(process.cwd(), 'data', 'investor-database.json');
-    const data = fs.readFileSync(dataPath, 'utf-8');
+    const data = loadJsonData('investor-database.json', defaultInvestorData);
     return {
       contents: [
         {
           uri: "investor://database",
           mimeType: "application/json",
-          text: data,
+          text: JSON.stringify(data, null, 2),
         },
       ],
     };
@@ -31,9 +36,7 @@ export class InvestorResources {
     mimeType: "application/json",
   })
   async getAccelerators() {
-    const dataPath = path.join(process.cwd(), 'data', 'investor-database.json');
-    const rawData = fs.readFileSync(dataPath, 'utf-8');
-    const data = JSON.parse(rawData);
+    const data = loadJsonData('investor-database.json', defaultInvestorData);
     return {
       contents: [
         {
@@ -52,9 +55,7 @@ export class InvestorResources {
     mimeType: "application/json",
   })
   async getGrants() {
-    const dataPath = path.join(process.cwd(), 'data', 'investor-database.json');
-    const rawData = fs.readFileSync(dataPath, 'utf-8');
-    const data = JSON.parse(rawData);
+    const data = loadJsonData('investor-database.json', defaultInvestorData);
     return {
       contents: [
         {

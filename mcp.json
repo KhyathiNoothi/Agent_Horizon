@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "health": {
+      "command": "node",
+      "args": ["./src/health-agent.js"]
+    },
+    "widget": {
+      "command": "node",
+      "args": ["./src/widget-agent.js"]
+    }
+  }
+}

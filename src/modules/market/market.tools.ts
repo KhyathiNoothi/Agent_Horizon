@@ -34,10 +34,12 @@ export class MarketTools {
       growthRate: sector.growth,
       competitors: sector.topPlayers.map((name: string) => ({
         name,
+        description: `Leading competitor in the ${input.industry} sector.`,
         type: 'Established Player',
         threat: 'High',
       })),
       trends: trends.trends,
+      trend: trends.trends,
       opportunities: [
         `Gap in ${input.industry} for AI-powered solutions`,
         `Underserved SMB segment in ${input.industry}`,

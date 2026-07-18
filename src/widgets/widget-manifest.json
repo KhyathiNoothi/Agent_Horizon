@@ -41,8 +41,162 @@
         }
       ],
       "tags": ["calculator", "math", "result"]
+    },
+    {
+      "uri": "/cost-breakdown",
+      "name": "Cost Breakdown",
+      "description": "Displays the estimated cost breakdown for a startup's infrastructure",
+      "examples": [
+        {
+          "name": "SaaS Platform Cost Estimation",
+          "description": "Costs for a typical SaaS stack with 1000 users",
+          "data": {
+            "idea": "AI-powered recipe app",
+            "costs": [
+              { "category": "Hosting", "amount": 40 },
+              { "category": "Database", "amount": 30 },
+              { "category": "Storage", "amount": 20 },
+              { "category": "Email Service", "amount": 10 },
+              { "category": "Monitoring", "amount": 15 },
+              { "category": "Domain SSL", "amount": 5 },
+              { "category": "AI APIs", "amount": 60 },
+              { "category": "Third Party APIs", "amount": 20 },
+              { "category": "CDN", "amount": 20 },
+              { "category": "Backup", "amount": 5 }
+            ],
+            "monthlyTotal": 225,
+            "savingTips": [
+              "Use Vercel free tier for frontend hosting",
+              "Start with Supabase free tier for database",
+              "Use Cloudflare for CDN (free tier)",
+              "AWS/GCP startup credits can save $5000+"
+            ]
+          }
+        }
+      ],
+      "tags": ["cost", "breakdown", "budget", "finance"]
+    },
+    {
+      "uri": "/market-dashboard",
+      "name": "Market Dashboard",
+      "description": "Overview of startup market size, trend, competitors, and opportunities",
+      "examples": [
+        {
+          "name": "EdTech Market Analysis",
+          "description": "Market dashboard for an AI EdTech idea",
+          "data": {
+            "idea": "AI Tutor App",
+            "marketSize": {
+              "tam": "500M",
+              "sam": "150M",
+              "som": "50M"
+            },
+            "competitors": [
+              { "name": "Duolingo", "description": "General language learning giant", "marketShare": "45%", "strength": "Huge brand" },
+              { "name": "Khan Academy", "description": "Free educational content", "marketShare": "20%", "strength": "Trusted brand" }
+            ],
+            "trend": [
+              { "period": "2022", "value": 40 },
+              { "period": "2023", "value": 60 },
+              { "period": "2024", "value": 85 },
+              { "period": "2025", "value": 120 }
+            ],
+            "opportunities": [
+              "Personalized learning at scale using LLMs",
+              "Gamified curriculum for K-12",
+              "Offline learning capability in emerging markets"
+            ]
+          }
+        }
+      ],
+      "tags": ["market", "analysis", "competitors"]
+    },
+    {
+      "uri": "/mvp-roadmap",
+      "name": "MVP Roadmap",
+      "description": "A Gantt-like timeline and core feature breakdown for MVP release",
+      "examples": [
+        {
+          "name": "3-Month MVP Plan",
+          "description": "Roadmap for a 2-person team building an AI tool",
+          "data": {
+            "idea": "AI Document Assistant",
+            "timeline": "3 months",
+            "teamSize": 2,
+            "coreFeatures": [
+              { "feature": "User Authentication", "priority": "Must Have", "effort": "3 days", "description": "Auth sign up and login" },
+              { "feature": "PDF Parsing Pipeline", "priority": "Must Have", "effort": "2 weeks", "description": "Extract text and tables from PDFs" },
+              { "feature": "Chat Interface", "priority": "Must Have", "effort": "1.5 weeks", "description": "Query docs in real-time" }
+            ],
+            "milestones": [
+              { "milestone": "Phase 1: Foundation", "dueBy": "Week 1-2", "description": "Project setup & auth complete" },
+              { "milestone": "Phase 2: Core Development", "dueBy": "Week 3-8", "description": "Core PDF parsing and Chat live" }
+            ],
+            "roadmap": {
+              "totalWeeks": 12,
+              "phases": [
+                { "phase": "Phase 1: Foundation & Setup", "weekRange": "1-2", "tasks": ["Setup CI/CD", "Configure Database"] },
+                { "phase": "Phase 2: Core Development", "weekRange": "3-8", "tasks": ["Build PDF Parser", "Integrate LLM"] }
+              ]
+            },
+            "recommendations": [
+              "Focus strictly on PDF query first",
+              "Use third-party auth to save time"
+            ]
+          }
+        }
+      ],
+      "tags": ["mvp", "roadmap", "timeline"]
+    },
+    {
+      "uri": "/tech-stack-viewer",
+      "name": "Tech Stack Viewer",
+      "description": "Displays recommended technology architecture with details and costs",
+      "examples": [
+        {
+          "name": "Modern Web Stack",
+          "description": "Tech stack suggestion for a standard web application",
+          "data": {
+            "idea": "B2B SaaS Portal",
+            "recommended": {
+              "frontend": { "name": "Next.js (React)", "reason": "Best for SEO and SSR capabilities", "alternatives": ["Vite + React", "SvelteKit"], "cost": "Free", "difficulty": "Medium" },
+              "backend": { "name": "NestJS (Node.js)", "reason": "Enterprise-ready architecture", "alternatives": ["Express", "FastAPI"], "cost": "Free", "difficulty": "Medium" },
+              "database": { "name": "PostgreSQL", "reason": "Highly reliable relational database", "alternatives": ["MySQL", "MongoDB"], "cost": "Free/Cloud pricing", "difficulty": "Medium" }
+            },
+            "totalEstimatedCost": "$0-25/month",
+            "setupTime": "1-2 days",
+            "mvpReadyIn": "6-8 weeks",
+            "tips": [
+              "Deploy frontend to Vercel",
+              "Use managed database like Supabase"
+            ]
+          }
+        }
+      ],
+      "tags": ["tech-stack", "architecture", "recommendations"]
+    },
+    {
+      "uri": "/idea-analysis-card",
+      "name": "Idea Analysis Card",
+      "description": "Visual gauge circles showing various startup feasibility scores",
+      "examples": [
+        {
+          "name": "Fintech Idea Analysis",
+          "description": "Score analysis for a Micro-Lending Platform",
+          "data": {
+            "idea": "Micro-Lending App",
+            "summary": "Visual analysis of the business viability and risk metrics.",
+            "scores": {
+              "feasibility": 80,
+              "scalability": 90,
+              "innovation": 75,
+              "difficulty": 65
+            }
+          }
+        }
+      ],
+      "tags": ["idea", "scoring", "analysis"]
     }
   ],
   "generatedAt": "2025-01-01T00:00:00.000Z"
 }
-

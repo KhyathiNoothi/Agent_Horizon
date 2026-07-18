@@ -1,4 +1,4 @@
-import { Verdict } from "../../shared/types/analysis.types";
+import { Verdict } from "../../shared/types/analysis.types.js";
 
 export function generateVerdict(
   overallScore: number

@@ -1,4 +1,4 @@
-import { SimulationResult } from "../../shared/types/analysis.types";
+import { SimulationResult } from "../../shared/types/analysis.types.js";
 
 export function runSimulation(): SimulationResult {
   return {

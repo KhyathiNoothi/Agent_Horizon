@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
+const widgetBasePath = process.env.WIDGET_BASE_PATH || '';
+
 const nextConfig = {
+  // If the widget is mounted under a subpath (e.g. /widgets/...),
+  // set WIDGET_BASE_PATH to that path so Next serves asset URLs correctly.
+  ...(widgetBasePath ? { assetPrefix: widgetBasePath, basePath: widgetBasePath } : {}),
   reactStrictMode: true,
   transpilePackages: ['nitrostack'],
   

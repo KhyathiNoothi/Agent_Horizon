@@ -48,6 +48,11 @@ export class CostTools {
       techStack: input.techStack,
       expectedUsers: input.expectedUsers,
       breakdown,
+      costs: Object.entries(breakdown).map(([category, amount]) => ({
+        category: category.replace('_', ' ').replace(/\b\w/g, c => c.toUpperCase()),
+        amount,
+      })),
+      monthlyTotal: monthly,
       summary: {
         monthly,
         annual,

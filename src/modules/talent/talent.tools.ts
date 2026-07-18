@@ -1,6 +1,18 @@
 import { ToolDecorator as Tool, ExecutionContext, z } from '@nitrostack/core';
-import * as fs from 'fs';
-import * as path from 'path';
+import { loadJsonData } from '../../shared/utils/json.loader.js';
+
+const defaultTalentData = {
+  platforms: {},
+  salary_benchmarks_india: {
+    software_engineer: { min: 2500000, mid_2_5yrs: { min: 70000, max: 120000 }, max: 180000 },
+    ui_ux_designer: { min: 1500000, mid_2_5yrs: { min: 45000, max: 85000 }, max: 120000 },
+    marketing_lead: { min: 1800000, mid_2_5yrs: { min: 50000, max: 90000 }, max: 130000 },
+    devops_engineer: { min: 2200000, mid_2_5yrs: { min: 60000, max: 110000 }, max: 150000 },
+    data_scientist: { min: 2500000, mid_2_5yrs: { min: 70000, max: 130000 }, max: 170000 },
+    intern: { stipend_monthly: 15000 }
+  },
+  role_templates: []
+};
 
 export class TalentTools {
   @Tool({
@@ -20,8 +32,7 @@ export class TalentTools {
   async analyzeHiringNeeds(input: any, ctx: ExecutionContext) {
     ctx.logger.info('Analyzing hiring needs', { teamSize: input.teamSize, location: input.location });
 
-    const dataPath = path.join(process.cwd(), 'data', 'talent-platforms.json');
-    const talentData = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+    const talentData = loadJsonData('talent-platforms.json', defaultTalentData);
     const salary = talentData.salary_benchmarks_india;
 
     const roles: any[] = [];
@@ -180,8 +191,7 @@ export class TalentTools {
   async getSalaryBenchmark(input: any, ctx: ExecutionContext) {
     ctx.logger.info('Fetching salary benchmark', { role: input.role });
 
-    const dataPath = path.join(process.cwd(), 'data', 'talent-platforms.json');
-    const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+    const data = loadJsonData('talent-platforms.json', defaultTalentData);
     const salaryData = data.salary_benchmarks_india[input.role];
 
     if (!salaryData) {

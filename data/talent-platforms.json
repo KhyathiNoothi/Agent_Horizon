@@ -1,0 +1,7 @@
+{
+  "platforms": [
+    { "name": "AngelList", "focus": "Startups & early hires", "link": "https://angel.co" },
+    { "name": "LinkedIn", "focus": "Professional networking", "link": "https://linkedin.com" },
+    { "name": "Internshala", "focus": "Internships & early talent", "link": "https://internshala.com" }
+  ]
+}

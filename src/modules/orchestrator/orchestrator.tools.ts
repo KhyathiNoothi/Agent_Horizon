@@ -1,46 +1,66 @@
 import {
+  ToolDecorator as Tool,
+  ExecutionContext,
+  z,
+} from "@nitrostack/core";
+
+import {
   StartupInput,
-  AgentResult
-} from "../../shared/types/analysis.types";
+  AgentResult,
+} from "../../shared/types/analysis.types.js";
 
-import { calculateScores } from "../scoring/scoring.tools";
-import { generateVerdict } from "../consensus/consensus.tools";
-import { runSimulation } from "../simulator/simulator.tools";
-import { generateReport } from "../reports/reports.tools";
+import { calculateScores } from "../scoring/scoring.tools.js";
+import { generateVerdict } from "../consensus/consensus.tools.js";
+import { runSimulation } from "../simulator/simulator.tools.js";
+import { generateReport } from "../reports/reports.tools.js";
 
-export async function runStartupAnalysis(
-  input: StartupInput
-) {
+export class OrchestratorTools {
 
-  console.log("Starting startup analysis...");
+  @Tool({
+    name: "run_startup_analysis",
+    description: "Run complete startup analysis",
+    inputSchema: z.object({
+      idea: z.string(),
+      budget: z.number(),
+      location: z.string(),
+      teamSize: z.number(),
+    }),
+  })
+  async runStartupAnalysis(
+    input: StartupInput,
+    ctx: ExecutionContext
+  ) {
 
-  const scores = calculateScores();
+    ctx.logger.info("Running startup analysis");
 
-  const verdict = generateVerdict(
-    scores.startupScore
-  );
+    const scores = calculateScores();
 
-  const simulation = runSimulation();
+    const verdict = generateVerdict(
+      scores.startupScore
+    );
 
-  const report = generateReport(
-    scores,
-    verdict,
-    simulation
-  );
+    const simulation = runSimulation();
 
-  const results: AgentResult[] = [];
+    const report = generateReport(
+      scores,
+      verdict,
+      simulation
+    );
 
-  return {
-    startupIdea: input.idea,
-    budget: input.budget,
-    location: input.location,
-    teamSize: input.teamSize,
+    const results: AgentResult[] = [];
 
-    scores,
-    verdict,
-    simulation,
-    report,
+    return {
+      startupIdea: input.idea,
+      budget: input.budget,
+      location: input.location,
+      teamSize: input.teamSize,
 
-    agentResults: results
-  };
+      scores,
+      verdict,
+      simulation,
+      report,
+
+      agentResults: results,
+    };
+  }
 }

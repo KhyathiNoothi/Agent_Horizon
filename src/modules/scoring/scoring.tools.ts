@@ -1,4 +1,4 @@
-import { AllScores } from "../../shared/types/analysis.types";
+import { AllScores } from "../../shared/types/analysis.types.js";
 
 export function calculateScores(): AllScores {
   return {

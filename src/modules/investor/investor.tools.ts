@@ -1,6 +1,12 @@
 import { ToolDecorator as Tool, ExecutionContext, z } from '@nitrostack/core';
-import * as fs from 'fs';
-import * as path from 'path';
+import { loadJsonData } from '../../shared/utils/json.loader.js';
+
+const defaultInvestorData = {
+  accelerators: [],
+  angel_networks: [],
+  vc_firms: [],
+  government_grants: []
+};
 
 export class InvestorTools {
   @Tool({
@@ -20,8 +26,7 @@ export class InvestorTools {
   async analyzeFundingOpportunities(input: any, ctx: ExecutionContext) {
     ctx.logger.info('Analyzing funding opportunities', { stage: input.stage, industry: input.industry });
 
-    const dataPath = path.join(process.cwd(), 'data', 'investor-database.json');
-    const investorData = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+    const investorData = loadJsonData('investor-database.json', defaultInvestorData) as any;
     const industry = (input.industry || '').toLowerCase();
     const loc = (input.location || '').toLowerCase();
 
@@ -152,8 +157,7 @@ export class InvestorTools {
   async matchInvestors(input: any, ctx: ExecutionContext) {
     ctx.logger.info('Matching investors', { industry: input.industry, stage: input.stage });
 
-    const dataPath = path.join(process.cwd(), 'data', 'investor-database.json');
-    const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+    const data = loadJsonData('investor-database.json', defaultInvestorData) as any;
 
     return {
       query: { industry: input.industry, stage: input.stage, location: input.location },

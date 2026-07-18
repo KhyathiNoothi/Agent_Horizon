@@ -2,7 +2,7 @@ import {
   AllScores,
   Verdict,
   SimulationResult
-} from "../../shared/types/analysis.types";
+} from "../../shared/types/analysis.types.js";
 
 export function generateReport(
   scores: AllScores,
